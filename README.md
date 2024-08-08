@@ -1,5 +1,5 @@
 Nia Ecotienda
-Nia Ecotienda es una tienda online desarrollada con React y Bootstrap para ofrecer una experiencia de compra moderna y responsiva. Los usuarios pueden explorar productos, agregarlos al carrito, y realizar compras fácilmente. El proyecto utiliza Firebase para la gestión de datos y almacenamiento.
+es una tienda online desarrollada con React y Bootstrap para ofrecer una experiencia de compra moderna y responsiva. Los usuarios pueden explorar productos, agregarlos al carrito, y realizar compras fácilmente. El proyecto utiliza Firebase para la gestión de datos y almacenamiento.
 
 Contenido
 Características
@@ -26,7 +26,9 @@ Clona el repositorio
 bash
 Copiar código
 git clone https://github.com/tu-usuario/nia-ecotienda.git
+
 cd nia-ecotienda
+
 Instala las dependencias
 
 Asegúrate de tener Node.js y npm instalados. Luego, ejecuta:
