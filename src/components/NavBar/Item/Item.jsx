@@ -1,24 +1,39 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Box, Image, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
-const Item = ({ id, name, img, category, price }) => {
-  const defaultImageUrl = 'https://via.placeholder.com/150'; // URL de la imagen predeterminada
-
+const Item = ({ product }) => {
   return (
-    <article>
-      <h1>{name}</h1>
-      <img 
-        src={img || defaultImageUrl} 
-        alt={name} 
-        style={{ width: 100 }} 
-        onError={(e) => {e.target.onerror = null; e.target.src=defaultImageUrl}} 
-      />
-      <p>Category: {category}</p>
-      <h2>{price}</h2>
-      <Link to={`/item/${id}`}>Ver Detalle</Link>
-      <hr /> {/* genera una línea entre productos */}
-    </article>
+    <Box
+      maxW="100%"   
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+      boxShadow="md"
+      border="none"
+      p="5"
+      textAlign="center"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Link to={`/detail/${product.id}`}>
+        <Image
+          src={product.img}
+          alt={product.name}
+          boxSize="200px"  
+          objectFit="cover"
+          mx="auto"
+        />
+        <Text mt="4" fontSize="xl" fontWeight="bold" color="teal.600">
+          {product.name}
+        </Text>
+        <Text mt="2" fontSize="lg" fontWeight="bold" color="gray.800">
+          ${product.price}
+        </Text>
+      </Link>
+    </Box>
   );
-}
+};
 
 export default Item;

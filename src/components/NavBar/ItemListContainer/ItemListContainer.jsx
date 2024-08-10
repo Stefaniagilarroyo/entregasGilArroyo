@@ -1,28 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { getProducts, getProductsByCategory } from '../asyncMock';
 import ItemList from '../ItemList/ItemList';
 import { useParams } from 'react-router-dom';
+import { db } from '../../../services/firebase';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { useNotification } from '../../context/NotificationContext';
+import { Wrap, WrapItem, Heading } from "@chakra-ui/react";
 
-const ItemListContainer = ({ greetings }) => {
+function ItemListContainer ({ greetings }) {
+  const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  const { category } = useParams();
+  const { categoryId } = useParams();
+  const { setNotification } = useNotification();
 
   useEffect(() => {
-    const fetchProducts = category ? getProductsByCategory : getProducts;
+    setLoading(true);
+    const collectionRef = categoryId
+      ? query(collection(db, "productos"), where("category", "==", categoryId))
+      : collection(db, "productos");
 
-    fetchProducts(category)
-      .then((res) => {
-        setProducts(res);
+    getDocs(collectionRef)
+      .then((querySnapshot) => {
+        const productos = querySnapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
+        setProducts(productos);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setNotification("danger", `No es posible cargar los productos`);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-  }, [category]);
+  }, [categoryId]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
-      <h1>{greetings}</h1>
-      <ItemList products={products} />
+      <Heading>{greetings}</Heading>
+      <Wrap spacing="30px" justify="center">
+        <ItemList products={products} />
+      </Wrap>
     </div>
   );
 };

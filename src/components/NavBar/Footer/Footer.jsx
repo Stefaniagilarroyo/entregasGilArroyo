@@ -1,27 +1,16 @@
 import React from 'react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 
-function Footer() {
+const Footer = () => {
   return (
-    <footer className="bg-dark text-white mt-5 p-4 text-center">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <p>&copy; 2024 Nia Ecotienda. Todos los derechos reservados.</p>
-            <p>
-              <a href="/privacy-policy" className="text-white">
-                Política de Privacidad
-              </a>{' '}
-              |{' '}
-              <a href="/terms-of-service" className="text-white">
-                Términos de Servicio
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <Box bg="gray.800" color="white" py="4" textAlign="center">
+      <Flex justify="center" align="center" direction="column">
+        <Text mb="2">© 2024 Nia Ecotienda. Todos los derechos reservados.</Text>
+      </Flex>
+    </Box>
   );
-}
+};
 
 export default Footer;
+
 

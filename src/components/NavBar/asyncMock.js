@@ -24,7 +24,7 @@ const products = [
       price: 1400,
       category: "velas",
       img: "https://acdn.mitiendanube.com/stores/001/947/461/products/velas21-c0e61046e7d592ea0e16486623228329-640-0.jpg",
-      stock: 0,
+      stock: 15,
       description: "Vela de alta duración de soja con fragancia de limon",
     },
     {
@@ -33,9 +33,10 @@ const products = [
       price: 1200,
       category: "cepillos",
       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCq1rBW9sxCk2tOQtSG2RZ-xsJxBLdLoTNzA&s",
-      stock: 0,
+      stock: 20,
       description: "cepillo ecologico de madera",
     },
+  
   ];
   
   export const getProducts = () => {
